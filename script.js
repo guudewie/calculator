@@ -1,28 +1,28 @@
 // select operators
-const ADD = document.querySelector(".plus")
+const ADD = document.querySelector('.plus')
 const SUBTRACT = document.querySelector(".minus")
 const DIVIDE = document.querySelector(".divide")
 const DULTIPLY = document.querySelector(".multiply")
 
+console.log(ADD)
+
 // select numbers
-const ZERO = document.querySelector(".zero")
-const ONE = document.querySelector(".one")
-const TWO = document.querySelector(".two")
-const THREE = document.querySelector(".three")
-const FOUR = document.querySelector(".four")
-const FIVE = document.querySelector(".five")
-const SIX = document.querySelector(".six")
-const SEVEN = document.querySelector(".seven")
-const EIGHT = document.querySelector(".eight")
-const NINE = document.querySelector(".nine")
+const ZERO = document.querySelector('.zero.button')
+const ONE = document.querySelector(".one.button")
+const TWO = document.querySelector(".two.button")
+const THREE = document.querySelector(".three.button")
+const FOUR = document.querySelector(".four.button")
+const FIVE = document.querySelector(".five.button")
+const SIX = document.querySelector(".six.button")
+const SEVEN = document.querySelector(".seven.button")
+const EIGHT = document.querySelector(".eight.button")
+const NINE = document.querySelector(".nine.button")
 
 // select other buttons/elements
 const DISPLAY = document.getElementById("display")
-console.log(DISPLAY)
-console.log(ZERO)
 
 // event listeners
-ZERO.addEventListener("click", () => DISPLAY.textContent = "0")
+ZERO.addEventListener("click", () => {DISPLAY.textContent = "0"})
 ONE.addEventListener("click", () => populateDisplay("1"))
 TWO.addEventListener("click", () => populateDisplay("2"))
 THREE.addEventListener("click", () => populateDisplay("3"))
@@ -37,7 +37,7 @@ NINE.addEventListener("click", () => populateDisplay("9"))
 // DISPLAY LOGIC START
 
 function populateDisplay(value) {
-    DISPLAY.textContent = value
+    DISPLAY.textContent += value
 }
 
 // CALCULATOR OPERATION START
@@ -65,5 +65,3 @@ function mul(number1, number2) {
 function div(number1, number2) {
     return number1 / number2
 }
-
-
