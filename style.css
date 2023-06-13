@@ -20,7 +20,7 @@ body {
     gap: 20px;
 
 }
-.calculator-display {
+#display {
     background-color: rgb(214, 214, 214);
     height: 55px;
     padding: 10px;
