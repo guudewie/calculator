@@ -10,9 +10,8 @@ body {
 
 .calculator-container {
     background-color: rgb(180, 180, 180);
-    height: 500px;
-    width: 400px;
     padding: 20px;
+    border-radius: 20px;
 
     display: flex;
     flex-direction: column;
@@ -23,7 +22,14 @@ body {
 }
 .calculator-display {
     background-color: rgb(214, 214, 214);
-    height: 60px;
+    height: 55px;
+    padding: 10px;
+    font-size: 23px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .calculator-buttons {
@@ -37,17 +43,24 @@ section {
     display: flex;
     justify-content: space-between;
     gap: 10px;
-
 }
 
 .button {
     height: 75px;
     width: 75px;
     flex: 1;
-    border: none;
     font-size: 26px;
+    border-radius: 10px;
+    appearance: none;
+    border: none;
 }
 
+.button:active {
+    box-shadow: #626262 0 2px 5px inset;
+    transform: translateY(2px);
+  }
+
 .button.equal {
-    width: 160px;
+    width: 75px;
+    flex: 2.4;
 }
