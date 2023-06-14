@@ -224,7 +224,7 @@ function decide (value) {
 
     if (numericValue.includes(value)) {
        
-        if (result) {
+        if (number1 && !number2 && !operator && result) {
             cage = result;
             reset();
             number1 = Number(cage) + value
