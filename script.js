@@ -223,11 +223,20 @@ function decide (value) {
 
     if (numericValue.includes(value)) {
        
-        DISPLAY.textContent += value
+        if (result) {
+            cage = result;
+            reset();
+            number1 = Number(cage) + value
+            DISPLAY.textContent = number1
+        
+        // case: second number (to be) entered
+        } else {
+            DISPLAY.textContent += value
             
-        // asign value to number1 if empty and number2 if already assigned
-        if (!operator) {number1 += value;
-        } else {number2 += value}
+            // asign value to number1 if empty and number2 if already assigned
+            if (!operator) {number1 += value;
+            } else {number2 += value}
+        }
 
     } else if (operatorValue.includes(value)) {
 
