@@ -90,14 +90,41 @@ function hasDots(num) {
 
 function addDot() {
 
-    num1Str = number1.toString()
-    num2Str = number2.toString()
+    if (result) {
+        if (hasDots(number1)) return
 
-    if (number1 && number2) {
+        cage = result;
+        reset();
+        number1 = Number(cage) + "."
+        DISPLAY.textContent = number1
+    } else if (operator){
+        if (hasDots(number2)) return
+        
+        number2 = Number(number2) + "."
+        DISPLAY.textContent = number2
+    } else if (!operator && !result){
+        if (hasDots(number1)) return
+        
+        number1 = Number(number1) + "."
+        DISPLAY.textContent = number1
+    }
+
+/*
+    if (number1 == result) {
+        if (hasDots(number1)) return
+        cage = result;
+        reset();
+        number1 = Number(cage) + "."
+        DISPLAY.textContent = cage
+    } else if (number1 && !number2) {
         if (hasDots(number2)) return
         number2 = Number(number2) + "."
         DISPLAY.textContent = number2
-    } else if (number1 && result) {
+    } else if (number1 && number2) {
+        if (hasDots(number2)) return
+        number2 = Number(number2) + "."
+        DISPLAY.textContent = number2
+    } else if (number1 && (result)) {
         if (hasDots(number1)) return
         cage = result;
         reset();
@@ -111,6 +138,7 @@ function addDot() {
         number1 = Number(number1) + "."
         DISPLAY.textContent = number1
     }
+*/
 }
 
 function hundredth() {
@@ -182,7 +210,6 @@ function decide (value) {
     let numericValue = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]; 
     let operatorValue = ["+", "-", "*", "/"];
     let equalSign = "=";
-    let dotSign = ".";
 
     if (numericValue.includes(value)) {
        
@@ -218,16 +245,7 @@ function decide (value) {
             number2 = 0;
             operator = "";
         }
-    } 
-    //else if (value === dotSign) {
-    //
-    //    let displayStr = DISPLAY.textContent
-    //
-    //    if (displayStr.charAt(displayStr.length()-1) === ".") {
-    //        return;
-    //    } else { }
-
-
+    }
 
     console.log(`******** ${value} ********`)
     console.log("number 1: ", number1)
