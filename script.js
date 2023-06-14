@@ -23,6 +23,9 @@ const SMALLDISPLAY = document.getElementById("small-display")
 // others
 const EQUAL = document.querySelector('.button.equal')
 const AC = document.querySelector('.AC')
+const MINUSTOGGLE = document.querySelector('.toggle')
+const HUNDREDTH = document.querySelector('.hundredth')
+const DOT = document.querySelector('.dot')
 
 
 // event listeners
@@ -41,28 +44,47 @@ ADD.addEventListener("click", () => decide("+"))
 SUBTRACT.addEventListener("click", () => decide("-"))
 DIVIDE.addEventListener("click", () => decide("/"))
 MULTIPLY.addEventListener("click", () => decide("*"))
-
 EQUAL.addEventListener("click", () => decide("="))
+
 AC.addEventListener("click", () => reset())
+MINUSTOGGLE.addEventListener("click", () => toggle())
 
 
-
-// DISPLAY LOGIC START
-
-function appendDisplay(value) {
-    DISPLAY.textContent += value
-}
 
 // CALCULATOR OPERATION START
 let number1 = 0;
 let number2 = 0;
 let operator = "";
 let displayValue;
+let result;
+let cage;
+
+function toggle() {
+
+    if (number1 && number2) {
+        number2 *= -1
+        DISPLAY.textContent = number2
+    } else if (number1 && result) {
+        cage = result;
+        reset();
+        number1 = cage * (-1)
+        DISPLAY.textContent = number1
+        console.log("********* toggle **********")
+        console.log("number 1: ", number1)
+        console.log("number 2: ", number2)
+        console.log("operator: ", operator)
+        console.log("result: ", result)
+    } else if (number1 && !operator) {
+        number1 *= -1
+        DISPLAY.textContent = number1
+    }
+}
 
 function reset() {
     number1 = 0;
     number2 = 0;
     operator = "";
+    result = 0;
     DISPLAY.textContent = "";
     SMALLDISPLAY.textContent = "";
 }
@@ -109,11 +131,10 @@ function decide (value) {
     let numericValue = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     let operatorValue = ["+", "-", "*", "/"];
     let equalSign = "="
-    let result;
 
     if (numericValue.includes(value)) {
        
-        appendDisplay(value)
+        DISPLAY.textContent += value
             
         // asign value to number1 if empty and number2 if already assigned
         if (!operator) {number1 += value;
@@ -122,8 +143,8 @@ function decide (value) {
     } else if (operatorValue.includes(value)) {
 
         if (number2 && number1) {
-            operator = value
             result = operate(operator)
+            operator = value
             DISPLAY.textContent = result
             number1 = result
             number2 = 0;
