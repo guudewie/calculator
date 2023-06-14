@@ -199,19 +199,20 @@ function operate(operator) {
 };
 
 function add(number1, number2) {
-    return Number(number1) + Number(number2)
+    return Number(number1) + Number(number2);
 }
 
 function sub(number1, number2) {
-    return Number(number1) - Number(number2)
+    return Number(number1) - Number(number2);
 }
 
 function mul(number1, number2) {
-    return Number(number1) * Number(number2)
+    let resultMul = Number(number1) * Number(number2);
+    return Math.round(resultMul * 100000) / 100000
 }
 
 function div(number1, number2) {
-    return Number(number1) / Number(number2)
+    return Number(number1) / Number(number2);
 }
 
 
