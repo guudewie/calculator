@@ -48,8 +48,8 @@ EQUAL.addEventListener("click", () => decide("="))
 
 AC.addEventListener("click", () => reset())
 MINUSTOGGLE.addEventListener("click", () => toggle())
-
-
+HUNDREDTH.addEventListener("click", () => hundredth())
+DOT.addEventListener("click", () => addDot("."))
 
 // CALCULATOR OPERATION START
 let number1 = 0;
@@ -69,13 +69,64 @@ function toggle() {
         reset();
         number1 = cage * (-1)
         DISPLAY.textContent = number1
-        console.log("********* toggle **********")
-        console.log("number 1: ", number1)
-        console.log("number 2: ", number2)
-        console.log("operator: ", operator)
-        console.log("result: ", result)
     } else if (number1 && !operator) {
         number1 *= -1
+        DISPLAY.textContent = number1
+    }
+}
+
+function hasDots(num) {
+    numStr = num.toString()
+
+    //allow . as first character
+    if (numStr == 0) return false
+
+    //check for any dots
+    for (char in numStr) {
+        if (numStr.charAt(char) == ".") return true
+    }
+    return false
+}
+
+function addDot() {
+
+    num1Str = number1.toString()
+    num2Str = number2.toString()
+
+    if (number1 && number2) {
+        if (hasDots(number2)) return
+        number2 = Number(number2) + "."
+        DISPLAY.textContent = number2
+    } else if (number1 && result) {
+        if (hasDots(number1)) return
+        cage = result;
+        reset();
+        number1 = Number(cage) + "."
+        DISPLAY.textContent = number1
+    } else if (number1 && !operator) {
+        if (hasDots(number1)) return
+        number1 = Number(number1) + "."
+        DISPLAY.textContent = number1
+    } else {
+        number1 = Number(number1) + "."
+        DISPLAY.textContent = number1
+    }
+}
+
+function hundredth() {
+
+    let onePercent = 0.01;
+
+    if (number1 && number2) {
+        number2 *= onePercent
+        DISPLAY.textContent = number2
+    } else if (number1 && result) {
+        cage = result;
+        reset();
+        number1 = cage * onePercent
+        DISPLAY.textContent = number1
+    } else if (number1 && !operator) {
+        number1 *= onePercent
         DISPLAY.textContent = number1
     }
 }
@@ -128,9 +179,10 @@ function div(number1, number2) {
 
 function decide (value) {
 
-    let numericValue = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    let numericValue = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]; 
     let operatorValue = ["+", "-", "*", "/"];
-    let equalSign = "="
+    let equalSign = "=";
+    let dotSign = ".";
 
     if (numericValue.includes(value)) {
        
@@ -166,7 +218,17 @@ function decide (value) {
             number2 = 0;
             operator = "";
         }
-    }
+    } 
+    //else if (value === dotSign) {
+    //
+    //    let displayStr = DISPLAY.textContent
+    //
+    //    if (displayStr.charAt(displayStr.length()-1) === ".") {
+    //        return;
+    //    } else { }
+
+
+
     console.log(`******** ${value} ********`)
     console.log("number 1: ", number1)
     console.log("number 2: ", number2)
