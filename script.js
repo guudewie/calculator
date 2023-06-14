@@ -2,9 +2,7 @@
 const ADD = document.querySelector('.plus')
 const SUBTRACT = document.querySelector(".minus")
 const DIVIDE = document.querySelector(".divide")
-const DULTIPLY = document.querySelector(".multiply")
-
-console.log(ADD)
+const MULTIPLY = document.querySelector(".multiply")
 
 // select numbers
 const ZERO = document.querySelector('.zero.button')
@@ -19,36 +17,59 @@ const EIGHT = document.querySelector(".eight.button")
 const NINE = document.querySelector(".nine.button")
 
 // select other buttons/elements
-const DISPLAY = document.getElementById("display")
+const DISPLAY = document.getElementById("big-display")
+const SMALLDISPLAY = document.getElementById("small-display")
 
 // event listeners
-ZERO.addEventListener("click", () => {DISPLAY.textContent = "0"})
-ONE.addEventListener("click", () => populateDisplay("1"))
-TWO.addEventListener("click", () => populateDisplay("2"))
-THREE.addEventListener("click", () => populateDisplay("3"))
-FOUR.addEventListener("click", () => populateDisplay("4"))
-FIVE.addEventListener("click", () => populateDisplay("5"))
-SIX.addEventListener("click", () => populateDisplay("6"))
-SEVEN.addEventListener("click", () => populateDisplay("7"))
-EIGHT.addEventListener("click", () => populateDisplay("8"))
-NINE.addEventListener("click", () => populateDisplay("9"))
+ZERO.addEventListener("click", () => decide("0"))
+ONE.addEventListener("click", () => decide("1"))
+TWO.addEventListener("click", () => decide("2"))
+THREE.addEventListener("click", () => decide("3"))
+FOUR.addEventListener("click", () => decide("4"))
+FIVE.addEventListener("click", () => decide("5"))
+SIX.addEventListener("click", () => decide("6"))
+SEVEN.addEventListener("click", () => decide("7"))
+EIGHT.addEventListener("click", () => decide("8"))
+NINE.addEventListener("click", () => decide("9"))
+
+ADD.addEventListener("click", () => decide("+"))
+SUBTRACT.addEventListener("click", () => decide("-"))
+DIVIDE.addEventListener("click", () => decide("/"))
+MULTIPLY.addEventListener("click", () => decide("*"))
+
 
 
 // DISPLAY LOGIC START
 
-function populateDisplay(value) {
+function appendDisplay(value) {
     DISPLAY.textContent += value
 }
 
 // CALCULATOR OPERATION START
-let number1;
-let number2;
-let operator;
+let number1 = 0;
+let number2 = 0;
+let operator = "";
 let displayValue;
 
-function operate(number1, number2, operator) {
-    
-}
+function operate() {
+
+    switch (operator) {
+        case "+":
+            add(number1, number2)
+            break;
+
+        case "-":
+            sub(number1, number2)
+            break;
+
+        case "*":
+            mul(number1, number2)
+            break;
+
+        case "/":
+            div(number1, number2)
+    };
+};
 
 function add(number1, number2) {
     return number1 + number2
@@ -65,3 +86,61 @@ function mul(number1, number2) {
 function div(number1, number2) {
     return number1 / number2
 }
+
+
+function decide (value) {
+
+    let numericValue = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    let operatorValue = ["+", "-", "*", "/"];
+
+    if (numericValue.includes(value)) {
+       
+        appendDisplay(value)
+            
+        // check whether this is the first number to be input
+        if (!operator) {number1 += value;
+        } else {number2 += value}
+
+    } else if (operatorValue.includes(value)) {
+
+        if (number1) {operator += value
+        } else if (number2) {operate()}
+
+    };
+
+    console.log("number 1: ", number1)
+    console.log("number 2: ", number2)
+    console.log("operator: ", operator)
+};
+
+
+
+
+/*
+
+PSEUDOCODE
+
+if (number input AND
+    operator)
+
+then safe number (number1) and operator (operator) and operate ()
+
+operate()
+
+    if (next input === number)
+        append input to number2
+    
+    else if (next input === operator || equal)
+        call math function(n1, n2)
+        store result
+        display result
+
+    else if (next input === AC || plusminus || %)
+        clear all
+        toggle plus minus current number
+        take 10th of number
+
+    return result
+
+
+*/
