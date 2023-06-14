@@ -59,6 +59,17 @@ let displayValue;
 let result;
 let cage;
 
+
+function updateAC() {
+    if (DISPLAY.textContent && result) {
+        AC.textContent = "AC"
+    } else if (DISPLAY.textContent) {
+        AC.textContent = "C"
+    } else {
+        AC.textContent = "AC"
+    }
+}
+
 function toggle() {
 
     if (number1 && number2) {
@@ -90,6 +101,7 @@ function hasDots(num) {
 
 function addDot() {
 
+    // case: first number (to be) entered
     if (result) {
         if (hasDots(number1)) return
 
@@ -97,49 +109,22 @@ function addDot() {
         reset();
         number1 = Number(cage) + "."
         DISPLAY.textContent = number1
+    
+    // case: second number (to be) entered
     } else if (operator){
         if (hasDots(number2)) return
         
         number2 = Number(number2) + "."
         DISPLAY.textContent = number2
+
+    // case: result exists 
     } else if (!operator && !result){
         if (hasDots(number1)) return
         
         number1 = Number(number1) + "."
         DISPLAY.textContent = number1
-    }
-
-/*
-    if (number1 == result) {
-        if (hasDots(number1)) return
-        cage = result;
-        reset();
-        number1 = Number(cage) + "."
-        DISPLAY.textContent = cage
-    } else if (number1 && !number2) {
-        if (hasDots(number2)) return
-        number2 = Number(number2) + "."
-        DISPLAY.textContent = number2
-    } else if (number1 && number2) {
-        if (hasDots(number2)) return
-        number2 = Number(number2) + "."
-        DISPLAY.textContent = number2
-    } else if (number1 && (result)) {
-        if (hasDots(number1)) return
-        cage = result;
-        reset();
-        number1 = Number(cage) + "."
-        DISPLAY.textContent = number1
-    } else if (number1 && !operator) {
-        if (hasDots(number1)) return
-        number1 = Number(number1) + "."
-        DISPLAY.textContent = number1
-    } else {
-        number1 = Number(number1) + "."
-        DISPLAY.textContent = number1
-    }
-*/
-}
+    };
+};
 
 function hundredth() {
 
@@ -160,12 +145,37 @@ function hundredth() {
 }
 
 function reset() {
-    number1 = 0;
-    number2 = 0;
-    operator = "";
-    result = 0;
-    DISPLAY.textContent = "";
-    SMALLDISPLAY.textContent = "";
+
+    switch (AC.textContent) {
+
+        case "AC":
+            number1 = 0;
+            number2 = 0;
+            operator = "";
+            result = 0;
+            DISPLAY.textContent = "";
+            SMALLDISPLAY.textContent = "";
+            break;
+
+        case "C":
+            if (result) {
+                number1 = 0;
+                number2 = 0;
+                operator = "";
+                result = 0;
+                DISPLAY.textContent = "";
+                SMALLDISPLAY.textContent = "";
+            } else if (number2) {
+                number2 = 0;
+                DISPLAY.textContent = "";
+            } else if (number1) {
+                number1 = 0;
+                DISPLAY.textContent = "";
+            }
+
+    }
+
+    updateAC()
 }
 
 function operate(operator) {
@@ -252,36 +262,7 @@ function decide (value) {
     console.log("number 2: ", number2)
     console.log("operator: ", operator)
     console.log("result: ", result)
+    console.log("display: ", DISPLAY.textContent)
+
+    updateAC()
 };
-
-
-
-
-/*
-
-PSEUDOCODE
-
-if (number input AND
-    operator)
-
-then safe number (number1) and operator (operator) and operate ()
-
-operate()
-
-    if (next input === number)
-        append input to number2
-    
-    else if (next input === operator || equal)
-        call math function(n1, n2)
-        store result
-        display result
-
-    else if (next input === AC || plusminus || %)
-        clear all
-        toggle plus minus current number
-        take 10th of number
-
-    return result
-
-
-*/
