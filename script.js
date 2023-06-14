@@ -20,6 +20,11 @@ const NINE = document.querySelector(".nine.button")
 const DISPLAY = document.getElementById("big-display")
 const SMALLDISPLAY = document.getElementById("small-display")
 
+// others
+const EQUAL = document.querySelector('.button.equal')
+const AC = document.querySelector('.AC')
+
+
 // event listeners
 ZERO.addEventListener("click", () => decide("0"))
 ONE.addEventListener("click", () => decide("1"))
@@ -37,6 +42,9 @@ SUBTRACT.addEventListener("click", () => decide("-"))
 DIVIDE.addEventListener("click", () => decide("/"))
 MULTIPLY.addEventListener("click", () => decide("*"))
 
+EQUAL.addEventListener("click", () => decide("="))
+AC.addEventListener("click", () => reset())
+
 
 
 // DISPLAY LOGIC START
@@ -51,40 +59,48 @@ let number2 = 0;
 let operator = "";
 let displayValue;
 
-function operate() {
+function reset() {
+    number1 = 0;
+    number2 = 0;
+    operator = "";
+    DISPLAY.textContent = "";
+    SMALLDISPLAY.textContent = "";
+}
+
+function operate(operator) {
 
     switch (operator) {
         case "+":
-            add(number1, number2)
+            return add(number1, number2)
             break;
 
         case "-":
-            sub(number1, number2)
+            return sub(number1, number2)
             break;
 
         case "*":
-            mul(number1, number2)
+            return mul(number1, number2)
             break;
 
         case "/":
-            div(number1, number2)
+            return div(number1, number2)
     };
 };
 
 function add(number1, number2) {
-    return number1 + number2
+    return Number(number1) + Number(number2)
 }
 
 function sub(number1, number2) {
-    return number1 - number2
+    return Number(number1) - Number(number2)
 }
 
 function mul(number1, number2) {
-    return number1 * number2
+    return Number(number1) * Number(number2)
 }
 
 function div(number1, number2) {
-    return number1 / number2
+    return Number(number1) / Number(number2)
 }
 
 
@@ -92,25 +108,49 @@ function decide (value) {
 
     let numericValue = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     let operatorValue = ["+", "-", "*", "/"];
+    let equalSign = "="
+    let result;
 
     if (numericValue.includes(value)) {
        
         appendDisplay(value)
             
-        // check whether this is the first number to be input
+        // asign value to number1 if empty and number2 if already assigned
         if (!operator) {number1 += value;
         } else {number2 += value}
 
     } else if (operatorValue.includes(value)) {
 
-        if (number1) {operator += value
-        } else if (number2) {operate()}
+        if (number2 && number1) {
+            operator = value
+            result = operate(operator)
+            DISPLAY.textContent = result
+            number1 = result
+            number2 = 0;
+            SMALLDISPLAY.textContent = `${Number(number1)} ${value}`
+            DISPLAY.textContent = ""
+        } else if (number1) {
+            operator += value
+            SMALLDISPLAY.textContent = `${Number(number1)} ${operator}`
+            DISPLAY.textContent = ""
+        }
 
-    };
+    } else if (value === equalSign){
 
+        if (number1 && operator && number2) {
+            SMALLDISPLAY.textContent = `${Number(number1)} ${operator} ${Number(number2)} =`
+            result = operate(operator)
+            DISPLAY.textContent = result
+            number1 = result
+            number2 = 0;
+            operator = "";
+        }
+    }
+    console.log(`******** ${value} ********`)
     console.log("number 1: ", number1)
     console.log("number 2: ", number2)
     console.log("operator: ", operator)
+    console.log("result: ", result)
 };
 
 
