@@ -79,8 +79,10 @@ section {
     gap: 10px;
 }
 
-/* GLOW EFFECT FOR BUTTONS -> ADD CLASS LIGHT TO USE
-.button.light {
+/*   GLOW EFFECT FOR BUTTONS -> ADD CLASS LIGHT TO USE 
+.button.light,
+section > .button,
+#buttondisplay {
     position: relative;
     height: 75px;
     width: 75px;
@@ -93,13 +95,15 @@ section {
 
     background: linear-gradient(180deg, #282828, #202020);
     box-shadow:     
-                    0 0 0 2px  rgba(0, 0, 0, 1),
-                    0 0 7px 5px #ffffff;
+                    0 0 0 1px  rgba(0, 0, 0, 1),
+                    0 0 0 2px #ffffff,
+                    0 0 4px 2px #ffffff;
     overflow: hidden;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
 }
+
 */
 
 .button {
