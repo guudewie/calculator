@@ -1,3 +1,6 @@
+// fix bug: multiple operators allowed
+
+
 // select operators
 const ADD = document.querySelector('.plus')
 const SUBTRACT = document.querySelector(".minus")
@@ -29,27 +32,27 @@ const DOT = document.querySelector('.dot')
 
 
 // event listeners
-ZERO.addEventListener("click", () => decide("0"))
-ONE.addEventListener("click", () => decide("1"))
-TWO.addEventListener("click", () => decide("2"))
-THREE.addEventListener("click", () => decide("3"))
-FOUR.addEventListener("click", () => decide("4"))
-FIVE.addEventListener("click", () => decide("5"))
-SIX.addEventListener("click", () => decide("6"))
-SEVEN.addEventListener("click", () => decide("7"))
-EIGHT.addEventListener("click", () => decide("8"))
-NINE.addEventListener("click", () => decide("9"))
+ZERO.addEventListener("mousedown", () => decide("0"))
+ONE.addEventListener("mousedown", () => decide("1"))
+TWO.addEventListener("mousedown", () => decide("2"))
+THREE.addEventListener("mousedown", () => decide("3"))
+FOUR.addEventListener("mousedown", () => decide("4"))
+FIVE.addEventListener("mousedown", () => decide("5"))
+SIX.addEventListener("mousedown", () => decide("6"))
+SEVEN.addEventListener("mousedown", () => decide("7"))
+EIGHT.addEventListener("mousedown", () => decide("8"))
+NINE.addEventListener("mousedown", () => decide("9"))
 
-ADD.addEventListener("click", () => decide("+"))
-SUBTRACT.addEventListener("click", () => decide("-"))
-DIVIDE.addEventListener("click", () => decide("/"))
-MULTIPLY.addEventListener("click", () => decide("*"))
-EQUAL.addEventListener("click", () => decide("="))
+ADD.addEventListener("mousedown", () => decide("+"))
+SUBTRACT.addEventListener("mousedown", () => decide("-"))
+DIVIDE.addEventListener("mousedown", () => decide("/"))
+MULTIPLY.addEventListener("mousedown", () => decide("*"))
+EQUAL.addEventListener("mousedown", () => decide("="))
 
-AC.addEventListener("click", () => reset())
-MINUSTOGGLE.addEventListener("click", () => toggle())
-HUNDREDTH.addEventListener("click", () => hundredth())
-DOT.addEventListener("click", () => addDot("."))
+AC.addEventListener("mousedown", () => reset())
+MINUSTOGGLE.addEventListener("mousedown", () => toggle())
+HUNDREDTH.addEventListener("mousedown", () => hundredth())
+DOT.addEventListener("mousedown", () => addDot("."))
 
 // CALCULATOR OPERATION START
 let number1 = 0;

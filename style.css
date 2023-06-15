@@ -11,10 +11,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #232323;
 }
 
 .calculator-container {
-    background-color: rgb(180, 180, 180);
+    /*background-color: rgb(180, 180, 180);*/
+    background-color: #232323;
     padding: 20px;
     border-radius: 20px;
 
@@ -57,21 +59,69 @@ section {
 }
 
 .button {
+    position: relative;
     height: 75px;
     width: 75px;
     flex: 1;
     font-size: 26px;
-    border-radius: 10px;
+    border-radius: 9px;
     appearance: none;
     border: none;
+    padding: 10px 13px;
+
+    background: linear-gradient(180deg, #282828, #202020);
+    box-shadow: inset -8px 0 8px rgba(0, 0, 0, 0.15),
+                inset 0 -8px 8px rgba(0, 0, 0, 0.25),
+                0 0 0 2px  rgba(0, 0, 0, 0.75),
+                10px 20px 25px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
-.button:active {
-    box-shadow: #626262 0 2px 5px inset;
-    transform: translateY(2px);
-  }
+.button::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    bottom: 14px;
+    right: 12px;
+    background: linear-gradient(90deg, #232323, #4a4a4a);
+    border-radius: 10px;
+    box-shadow: -10px -10px 10px rgba(255,255,255,0.25),
+    10px 5px 10px rgba(0,0,0,0.15);
+    border-left: 1px solid #0004;
+    border-bottom: 1px solid #0004;
+    border-top: 1px solid #0004;
+}
 
 .button.equal {
     width: 75px;
     flex: 2.4;
 }
+
+
+i {
+    position: relative;
+    color: #fff;
+    font-style: normal;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+
+/*
+.calculator-container {
+  transform: perspective(1500px) rotateY(45deg) rotateX(45deg);
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  transition: transform 1s ease 0s;
+
+  &:hover {
+    transform: perspective(3000px) rotateY(5deg) rotateX(5deg);
+  }
+}
+  
+*/
