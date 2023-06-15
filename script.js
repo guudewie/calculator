@@ -25,7 +25,8 @@ const SMALLDISPLAY = document.getElementById("small-display")
 
 // others
 const EQUAL = document.querySelector('.button.equal')
-const AC = document.querySelector('I.AC')
+const AC_TEXT = document.querySelector('.I.AC')
+const AC_BUTTON = document.querySelector('.button.AC')
 const MINUSTOGGLE = document.querySelector('.toggle')
 const HUNDREDTH = document.querySelector('.hundredth')
 const DOT = document.querySelector('.dot')
@@ -49,7 +50,7 @@ DIVIDE.addEventListener("mousedown", () => decide("/"))
 MULTIPLY.addEventListener("mousedown", () => decide("*"))
 EQUAL.addEventListener("mousedown", () => decide("="))
 
-AC.addEventListener("mousedown", () => reset())
+AC_BUTTON.addEventListener("mousedown", () => reset())
 MINUSTOGGLE.addEventListener("mousedown", () => toggle())
 HUNDREDTH.addEventListener("mousedown", () => hundredth())
 DOT.addEventListener("mousedown", () => addDot("."))
@@ -65,11 +66,11 @@ let cage;
 
 function updateAC() {
     if (DISPLAY.textContent && result) {
-        AC.textContent = "AC"
+        AC_TEXT.textContent = "AC"
     } else if (DISPLAY.textContent) {
-        AC.textContent = "C"
+        AC_TEXT.textContent = "C"
     } else {
-        AC.textContent = "AC"
+        AC_TEXT.textContent = "AC"
     }
 }
 
@@ -149,7 +150,7 @@ function hundredth() {
 
 function reset() {
 
-    switch (AC.textContent) {
+    switch (AC_TEXT.textContent) {
 
         case "AC":
             number1 = 0;
