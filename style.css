@@ -198,15 +198,12 @@ i {
     justify-content: center;
 }
 
-.github-icon{
-    -webkit-transition: -webkit-transform .3s ease-in-out;
-    -ms-transition: -ms-transform .3s ease-in-out;
-    transition: transform .3s ease-in-out;
-
+.github-icon {
+    font-size: 24px;
+    color: var(--black);
+    transition: transform 0.3s ease-in-out;
 }
-
-.github-icon:hover{
-    transform:rotate(360deg);
-    -ms-transform:rotate(360deg);
-    -webkit-transform:rotate(360deg);
+  
+.github-icon:hover {
+    transform: rotate(360deg) scale(1.2);
 }
