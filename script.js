@@ -245,6 +245,8 @@ function decide (value) {
 
     } else if (operatorValue.includes(value)) {
 
+        if (operator) return
+        
         if (number2 && number1) {
             result = operate(operator)
             operator = value
