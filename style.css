@@ -61,8 +61,8 @@ body {
 #big-display {
     flex: 1;
     font-family: 'VT323', monospace;
-    color: rgb(113, 210, 38);
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.658);
+    color: rgba(119, 226, 38, 0.759);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
     margin-right: 8px;
 }
 
@@ -170,7 +170,8 @@ section {
     bottom: 14px;
     right: 12px;
     border-radius: 10px;
-    box-shadow: inset -1px -1px 12px 2px rgba(152, 237, 55, 0.7),
+    box-shadow: inset -1px -1px 2px 0px rgb(1, 1, 1),
+                inset -1px -1px 12px 2px rgba(152, 237, 55, 0.7),
                 -10px -10px 10px rgba(255,255,255,0.4),
                 10px 5px 10px rgba(124, 124, 124, 0.15);
     border-left: 1px solid #0004;
@@ -207,3 +208,76 @@ i {
 .github-icon:hover {
     transform: rotate(360deg) scale(1.2);
 }
+
+
+@keyframes flickerAnimation {
+    0%   { opacity:0.9; }
+
+    10.9% { opacity:0.8; }
+    11% { opacity:0.2; }
+    11.1% { opacity:0.9; }
+
+    30% { opacity:1; }
+    31% { opacity:0.5; }
+    32%  { opacity:1; }
+    
+    90.9% { opacity:0.9; }
+    91% { opacity:0; }
+    91.1% { opacity:0.9; }
+  }
+  @-o-keyframes flickerAnimation{
+    0%   { opacity:0.9; }
+
+    10% { opacity:0.8; }
+    11% { opacity:0.3; }
+    12% { opacity:0.9; }
+
+    30% { opacity:1; }
+    31% { opacity:0.5; }
+    32%  { opacity:1; }
+    
+    90% { opacity:0.9; }
+    91% { opacity:0.7; }
+    100% { opacity:0.9; }
+  }
+  @-moz-keyframes flickerAnimation{
+    0%   { opacity:0.9; }
+
+    10% { opacity:0.8; }
+    11% { opacity:0.3; }
+    12% { opacity:0.9; }
+
+    30% { opacity:1; }
+    31% { opacity:0.5; }
+    32%  { opacity:1; }
+    
+    90% { opacity:0.9; }
+    91% { opacity:0.7; }
+    100% { opacity:0.9; }
+  }
+  @-webkit-keyframes flickerAnimation{
+    0%   { opacity:0.9; }
+
+    10% { opacity:0.8; }
+    11% { opacity:0.1; }
+    12% { opacity:0.9; }
+
+    30% { opacity:1; }
+    31% { opacity:0.5; }
+    32%  { opacity:1; }
+    
+    90% { opacity:0.9; }
+    91% { opacity:0.1; }
+    100% { opacity:0.9; }
+  }
+  
+  #big-display,
+  #small-display,
+  #buttondisplay::before {
+     -webkit-animation: flickerAnimation 3s infinite;
+     -moz-animation: flickerAnimation 3s infinite;
+     -o-animation: flickerAnimation 3s infinite;
+      animation: flickerAnimation 3s infinite;
+  }
+  
+  
