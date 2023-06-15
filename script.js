@@ -25,7 +25,7 @@ const SMALLDISPLAY = document.getElementById("small-display")
 
 // others
 const EQUAL = document.querySelector('.button.equal')
-const AC = document.querySelector('.AC')
+const AC = document.querySelector('I.AC')
 const MINUSTOGGLE = document.querySelector('.toggle')
 const HUNDREDTH = document.querySelector('.hundredth')
 const DOT = document.querySelector('.dot')
